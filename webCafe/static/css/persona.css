@@ -1,0 +1,137 @@
+.labels{
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 70px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.entrada{
+    font-size: 25px;
+    border: 2px solid black;
+    border-radius: 3rem;
+    box-shadow: 3px 2px 2px rgb(244, 168, 168);
+    text-align: center;
+}
+
+.entrada2{
+   font-size: 25px;
+   border: 2px solid black;
+   border-radius: 3rem;
+   box-shadow: 3px 2px 2px rgb(244, 168, 168);
+   text-align: center;
+}
+
+#botonaccion{
+    margin-top: 30px;
+  
+}
+
+#registropersona{
+    margin-top: 35px;
+}
+
+#resultado{
+    margin-top: 40px;
+    font-size: 20px;
+     border-top: 2px ridge black;
+ }
+
+ #tituloDatos{
+    margin-top: 15px;
+ }
+
+ #eliminarpersona{
+    margin-top: 35px;
+ }
+
+ #botoneliminar{
+    margin-top: 25px;
+    
+ }
+
+ .botonsum{
+    width: 120px;
+    height: 40px;
+    background-color: rgb(231, 191, 189);
+    border: 2px solid black;
+    border-radius: 3rem;
+ }
+
+#buscarpersona{
+    margin-top: 40px;
+}
+
+ #Buscar{
+    margin-top: 20px;
+ }
+
+ #botoneditar{
+    margin-top: 25px;
+ }
+
+ #editarpersona{
+    margin-top: 40px;
+ }
+
+ #botondesbloquea{
+margin-top: 20px;
+margin-right: 30px;
+ }
+
+ #botonvolvered{
+   margin-top: 20px;
+ }
+
+ #panel4{
+   justify-items: center;
+ }
+
+#tablaPerson{
+   width: 80%;
+   max-height: 92%;
+   border: 3px ridge black;
+   text-align: center;  
+   justify-items: center;
+   margin-top: 30px;
+   overflow-y: auto; 
+}
+
+ table {
+   width: 100%;
+   border-collapse: collapse;
+ }
+ 
+ th, td {
+   padding: 10px;
+   text-align: center;
+ }
+ 
+ tr{
+   background-color: #ffffff;
+   border-bottom: 1px ridge black;
+ }
+ 
+ th {
+   background-color: #ecbbb9;
+   color: rgb(8, 8, 8);
+   border-bottom: 3px ridge black;
+   text-shadow: 3px 2px 3px white;
+ }
+
+ #id_tipodoc{
+   font-size: 25px;
+   border: 2px solid black;
+   border-radius: 3rem;
+   box-shadow: 3px 2px 2px rgb(244, 168, 168);
+   text-align: center;
+ }
+
+ 
+ .selector {
+   font-size: 25px;
+   border: 2px solid black;
+   border-radius: 3rem;
+   box-shadow: 3px 2px 2px rgb(244, 168, 168);
+   text-align: center;
+ }

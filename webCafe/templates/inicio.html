@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link href="{% static 'css/inicio.css' %}" rel="stylesheet">
+    <title>FINCAS</title>
+  </head>
+  <body>
+  <div class="contenedor_padre">
+
+    <!-- ===== CARRUSEL ===== -->
+    <div id="carrusel">
+      <div class="carousel-inner2">
+        <img src="{% static 'img/cafe.jpg' %}" class="slide active" alt="cafe">
+<img src="{% static 'img/campo.jpg' %}" class="slide" alt="campo">
+<img src="{% static 'img/paisaje.jpg' %}" class="slide" alt="paisaje">
+<img src="{% static 'img/cafes.jpeg' %}" class="slide active" alt="cafes">
+<img src="{% static 'img/planta.jpg' %}"  class="slide" alt="planta">
+<img src="{% static 'img/RECOLECTOR.jpg' %}"class="slide"  alt="recolector">
+<img src="{% static 'img/cafePaquete.jpeg' %}" class="slide active" alt="cafePaquete">
+<img src="{% static 'img/cafe.jpg' %}" class="slide active" alt="cafe">
+      </div>
+    </div>
+
+    <!--LOGIN-->
+    <div class="login">
+      <div id="centrarlogo">
+     <img src="{% static 'img/logo_f.png' %}" alt="logo" style="width: 350px; height: auto;">
+        <div class="letras">FINCAS CAFETERAS</div>
+        <div id="letrapeque">SUAZA HUILA</div>
+      </div>
+
+      <form class="formulario" id="formulario">
+        <label><strong>Usuario</strong></label>
+        <input type="text" id="username" required>
+
+        <label><strong>Contraseña</strong></label>
+        <input type="password" id="password" required>
+
+        <button id="ingresoBoton" type="submit">Ingresar</button>
+      </form>
+    </div>
+
+  </div>
+
+  <!--CARRUSEL-->
+<script>
+    let index = 0;
+    const images = document.querySelectorAll('.slide');
+    const inner = document.querySelector('.carousel-inner2');
+    const totalImages = images.length;
+
+    function moverCarrusel() {
+        index++;
+
+        inner.style.transition = "transform 1.2s cubic-bezier(0.45, 0, 0.55, 1)";
+        inner.style.transform = `translateX(-${index * 100}%)`;
+
+
+        if (index === totalImages - 1) {
+            setTimeout(() => {
+                inner.style.transition = "none";
+                index = 0;
+                inner.style.transform = `translateX(0%)`;
+            }, 1200); 
+        }
+    }
+
+    setInterval(moverCarrusel, 4000);
+</script>
+
+
+  <script>
+    document
+      .getElementById("formulario")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          const response = await fetch("http://localhost:3000/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            if (data.username === "sa") {
+              window.location.href = "vista_admin.html";
+            } else if (data.username === "recolect") {
+              window.location.href = "vista_recolector.html";
+            } else {
+              window.location.href = "vista_proveedor.html";
+            }
+          } else {
+            alert(data.message);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
+  </script>
+
+</body>
+</html>
