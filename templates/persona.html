@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/admin.css" rel="stylesheet" />
+    <link href="./css/persona.css" rel="stylesheet" />
+    <title>PERSONA</title>
+  </head>
+  <body>
+    <div class="contenedor_padre">
+      <div class="boton_contenedor">
+        <div class="letras" id="vista_title">PERSONA</div>
+        <div id="ordena_boton">
+          <div class="letras" id="letra_gestion">Gestionar <img id="cafef" src="https://i.ibb.co/prgscZz/cafef.png" width="50px"></div>
+          <button id="botones" onclick="showPanel('panel1')">Agregar <img class="cafef" src="https://i.ibb.co/ynwJSFB/grano.png" width="30px"></button>
+          <button id="botones" onclick="showPanel('panel2')">Buscar <img class="cafef" src="https://i.ibb.co/ynwJSFB/grano.png" width="30px"></button>
+          <button id="botones" onclick="showPanel('panel3')">Eliminar <img class="cafef" src="https://i.ibb.co/ynwJSFB/grano.png" width="30px"></button>
+          <button id="botones" onclick="showPanel('panel4')">Ver <img class="cafef" src="https://i.ibb.co/ynwJSFB/grano.png" width="30px"></button>
+          <button id="botonVolver">Volver <img class="cafef" src="https://i.ibb.co/ynwJSFB/grano.png" width="30px"></button>
+        </div>
+      </div>
+
+      <!-- ///Registro -->
+      <div class="panel" id="panel1">
+        <form id="registropersona">
+          <div>
+            <label class="labels" id="documento"  >Documento</label>
+            <input  type="text"  class="entrada"   id="documento_persona"   minlength="8"  required  />
+          </div>
+          <div>
+            <label class="labels" id="tipodoc">Tipo documento</label>
+            <select class="selector"  id="id_tipodoc" name="documentotipo" required>\
+              <option value="0">---Seleccione---</option>
+              <option value="1">Cedula de ciudadania</option>
+              <option value="2">Tarjeta de identidad</option>
+              <option value="3">Cedula de extranjeria</option>
+            </select>
+          </div>
+          <div>
+            <label class="labels" id="nombre">Nombre</label>
+            <input type="text" class="entrada" id="nombre_persona" required />
+          </div>
+          <div>
+            <label class="labels" id="direccion">Dirección</label>
+            <input
+              type="text"
+              class="entrada"
+              id="direccion_persona"
+              required
+            />
+          </div>
+          <div>
+            <label class="labels" id="telefono">Teléfono</label>
+            <input type="text" class="entrada" id="telefono_persona" minlength="10"  required />
+          </div>
+          <button type="submit" class="botonsum" id="botonaccion">
+            Guardar
+          </button>
+        </form>
+        <div id="resultado"></div>
+      </div>
+
+      <!-- ///Eliminar -->
+      <div class="panel" id="panel3">
+        <form id="eliminarpersona">
+          <label class="labels" id="documento">Documento</label>
+          <input type="text" class="entrada" id="documento_eliminar" required />
+          <div>
+            <button type="submit" class="botonsum" id="botoneliminar">
+              Eliminar
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ///Buscar -->
+      <div class="panel" id="panel2">
+        <form id="buscarpersona">
+          <div>
+            <label class="labels" id="documento">Documento</label>
+            <input type="text" class="entrada" id="documento_buscar" required />
+          </div>
+          <button type="submit" class="botonsum" id="Buscar">Buscar</button>
+        </form>
+      </div>
+
+      <!-- ///Editar -->
+      <div class="panel" id="panel22">
+        <form id="editarpersona">
+          <div>
+            <label class="labels" id="documento">Documento</label>
+            <input
+              type="text"
+              class="entrada2"
+              id="documento_persona2"
+              disabled
+            />
+          </div>
+          <div>
+            <label class="labels" id="tipodoc">Tipo documento</label>
+            <select class="selector"  id="id_tipodoc2" name="documentotipo" disabled>\
+              <option value="0">---Seleccione---</option>
+              <option value="1">Cedula de ciudadania</option>
+              <option value="2">Tarjeta de identidad</option>
+              <option value="3">Cedula de extranjeria</option>
+            </select>
+          </div>
+          <div>
+            <label class="labels" id="nombre">Nombre</label>
+            <input type="text" class="entrada2" id="nombre_persona2" disabled />
+          </div>
+          <div>
+            <label class="labels" id="direccion">Dirección</label>
+            <input
+              type="text"
+              class="entrada2"
+              id="direccion_persona2"
+              disabled
+            />
+          </div>
+          <div>
+            <label class="labels" id="telefono">Teléfono</label>
+            <input
+              type="text"
+              class="entrada2"
+              id="telefono_persona2"
+              disabled
+            />
+          </div>
+          <button type="submit" class="botonsum" id="botoneditar" disabled>
+            Actualizar
+          </button>
+        </form>
+        <button class="botonsum" id="botondesbloquear">Editar</button>
+        <button class="botonsum" id="botonvolvered">Volver</button>
+      </div>
+
+      <!-- ///Mostrar -->
+      <div class="panel" id="panel4">
+      <div id="tablaPerson">
+        <table id="mostrarPersonas" border="1">
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Tipo documento</th>
+              <th>Nombre</th>
+              <th>Direccion</th>
+              <th>Telefono</th>
+            </tr>
+          </thead>
+          <tbody>
+           
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    </div>
+    <script>
+      ////mostrar/ocultar panel
+      function showPanel(panelId) {
+        const panels = document.querySelectorAll(".panel");
+        panels.forEach((panel) => (panel.style.display = "none"));
+        const selectedPanel = document.getElementById(panelId);
+        selectedPanel.style.display = "block";
+        const result = document.getElementById("resultado");
+          result.innerText='';
+      }
+      
+      const redirectVolver = document.getElementById("botonVolver");
+
+redirectVolver.addEventListener("click", () => {
+  if (document.referrer) {
+    window.location.href = document.referrer;
+  } else {
+    window.location.href = "http://localhost:3000/index.html"; 
+  }
+});
+
+      const redirectVolverEditar = document.getElementById("botonvolvered");
+      redirectVolverEditar.addEventListener("click", () => {
+        showPanel("panel2");
+        const botondesb = document.getElementById("botondesbloquear");
+        const boton = document.getElementById("botoneditar");
+        const selector= document.getElementById("id_tipodoc2");
+        botondesb.disabled = false;
+        boton.disabled = true;
+        selector.disabled=true;
+        const entradas2 = document.querySelectorAll(".entrada2");
+entradas2.forEach((entrada) => {
+  entrada.disabled = true; })
+        document.getElementById("editarpersona").reset();
+      });
+
+    
+     
+      /////registro
+      document
+        .getElementById("registropersona")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const documento_persona =
+            document.getElementById("documento_persona").value;
+          const id_tipodoc = document.getElementById("id_tipodoc").value;
+          if (id_tipodoc === "0") {
+    alert("Por favor, seleccione un tipo de documento válido.");
+    return false; 
+  }
+          const nombre_persona =
+            document.getElementById("nombre_persona").value;
+
+   const validarnombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+  if (!validarnombre.test(nombre_persona)) {
+    alert("El nombre solo debe contener letras");
+    return false; 
+  }
+          const direccion_persona =
+            document.getElementById("direccion_persona").value;
+          const telefono_persona =
+            document.getElementById("telefono_persona").value;
+
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/productos",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  documento_persona,
+                  id_tipodoc,
+                  nombre_persona,
+                  direccion_persona,
+                  telefono_persona,
+                }),
+              }
+            );
+
+            const data = await response.json();
+            if (response.ok) {
+              const resultadoDiv = document.getElementById("resultado");
+              resultadoDiv.innerHTML = `
+          <p id="tituloDatos"><strong>Datos guardados</strong></p>
+          <p><strong>Documento:</strong>${data.data.documento_persona}</p>
+          <p><strong>Tipo de documento:</strong>${data.data.id_tipodoc}</p>
+          <p><strong>Nombre:</strong>${data.data.nombre_persona}</p>
+          <p><strong>Dirección:</strong>${data.data.direccion_persona}</p>
+          <p><strong>Teléfono:</strong>${data.data.telefono_persona}</p>
+        `;
+              alert("Datos guardados con éxito");
+            } else {
+              alert(data.message || "Hubo un error al registrar los datos.");
+            }
+          } catch (error) {
+            alert("Hubo un error al registrar los datos.");
+          }
+          document.getElementById("registropersona").reset();
+          
+        });
+
+      ////Buscar
+      document
+        .getElementById("buscarpersona")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const documento_persona =
+            document.getElementById("documento_buscar").value;
+
+          try {
+            const response = await fetch(
+              `http://localhost:3000/api/productos/${documento_persona}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            const data = await response.json();
+            if (response.ok) {
+              showPanel("panel22");
+              document.getElementById("documento_persona2").value =
+                data.data.documento_persona;
+              document.getElementById("id_tipodoc2").value =
+                data.data.id_tipodoc;
+                if (id_tipodoc2 === "0") {
+    alert("Por favor, seleccione un tipo de documento válido.");
+    return false; 
+  }
+              document.getElementById("nombre_persona2").value =
+                data.data.nombre_persona;
+              document.getElementById("direccion_persona2").value =
+                data.data.direccion_persona;
+              document.getElementById("telefono_persona2").value =
+                data.data.telefono_persona;
+            } else {
+              alert(data.message || "No se pudieron cargar los datos.");
+            }
+          } catch (error) {
+            alert("Hubo un error al cargar los datos.");
+          }
+          document.getElementById("buscarpersona").reset();
+        });
+
+      /////editar
+      const redirecteditar = document.getElementById("botondesbloquear");
+      redirecteditar.addEventListener("click", () => {
+        const botondesb = document.getElementById("botondesbloquear");
+        const entradas = document.querySelectorAll(".entrada2");
+        const selector= document.getElementById("id_tipodoc2");
+        const boton = document.getElementById("botoneditar");
+        boton.disabled = false;
+        botondesb.disabled = true;
+        selector.disabled=false;
+        entradas.forEach((entradas) => {
+          if (entradas.id !== "documento_persona2") {
+            entradas.disabled = false;
+          }
+        }
+      );
+
+      });
+
+      document
+        .getElementById("editarpersona")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const botondesb = document.getElementById("botondesbloquear");
+          const boton = document.getElementById("botoneditar");
+          botondesb.disabled = false;
+          boton.disabled = true;
+          const documento_persona =
+            document.getElementById("documento_persona2").value;
+          const id_tipodoc = document.getElementById("id_tipodoc2").value;
+          if (id_tipodoc === "0") {
+    alert("Por favor, seleccione un tipo de documento válido.");
+    return false; 
+  }
+          const nombre_persona =
+            document.getElementById("nombre_persona2").value;
+          const direccion_persona =
+            document.getElementById("direccion_persona2").value;
+            
+          const telefono_persona =
+            document.getElementById("telefono_persona2").value;
+          try {
+            const response = await fetch(
+              `http://localhost:3000/api/productos/${documento_persona}`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  id_tipodoc,
+                  nombre_persona,
+                  direccion_persona,
+                  telefono_persona,
+                }),
+              }
+            );
+            const data = await response.json();
+            if (response.ok) {
+              alert("Datos actualizados con éxito");
+              const entradas2 = document.querySelectorAll(".entrada2");
+entradas2.forEach((entrada) => {
+  entrada.disabled = true; 
+})
+const estado = document.getElementById("estado_propietario2");
+estado.disabled=true;
+            } else {
+              alert(data.message || "Hubo un error al actualizar los datos.");
+            }
+          } catch (error) {
+            alert("Hubo un error al guardar los datos.");
+          }
+          showPanel("panel2");
+          document.getElementById("editarpersona").reset();
+        });
+
+      ////Eliminar
+      document
+        .getElementById("eliminarpersona")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const documento_persona =
+            document.getElementById("documento_eliminar").value;
+          try {
+            const response = await fetch(
+              `http://localhost:3000/api/productos/${documento_persona}`,
+              {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            const data = await response.json();
+            if (response.ok) {
+              alert(data.message);
+            } else {
+              alert(data.message || "Hubo un error al eliminar el producto.");
+            }
+          } catch (error) {
+            alert("Hubo un error al eliminar el producto.");
+          }
+          document.getElementById("eliminarpersona").reset();
+        });
+
+        ////Mostrar personas
+
+        
+        fetch('http://localhost:3000/api/productos')
+  .then(response => response.json())
+  .then(productos => {
+    const tablaBody = document.getElementById('mostrarPersonas').getElementsByTagName('tbody')[0];
+    
+    productos.forEach(persona => {
+      const fila= document.createElement('tr');
+
+    const documento = document.createElement('td');
+      documento.textContent = persona.documento_persona;
+      fila.appendChild(documento);
+      
+      const tipodoc = document.createElement('td');
+      if (persona.id_tipodoc==1){
+        tipodoc.textContent='CC';
+      }else if (persona.id_tipodoc==2){
+        tipodoc.textContent='TI';
+      }else{
+        tipodoc.textContent='CE';
+      }
+      fila.appendChild(tipodoc);
+      
+      const nombre = document.createElement('td');
+      nombre.textContent = persona.nombre_persona;
+      fila.appendChild(nombre);
+      
+      const direccion = document.createElement('td');
+      direccion.textContent = persona.direccion_persona;
+      fila.appendChild(direccion);
+      
+      const telefono = document.createElement('td');
+      telefono.textContent = persona.telefono_persona;
+      fila.appendChild(telefono);
+
+      tablaBody.appendChild(fila);
+    })
+  })
+  .catch(error => {
+    console.error('Hubo un error al obtener los datos:', error);
+  });
+
+  ///Servidor
+  function obtenerPersonas() {
+  fetch('http://localhost:3000/api/productos')
+    .then(response => response.json()) 
+    .then(productos => {
+      actualizarPersonas(productos); 
+    })
+    .catch(error => console.error('Error al obtener productos:', error));
+}
+setInterval(obtenerPersonas, 5000);
+
+  ///actualizarPersonas
+  function actualizarPersonas(productos) {
+    const tablaBody = document.getElementById('mostrarPersonas').getElementsByTagName('tbody')[0];
+    tablaBody.innerHTML = ''; 
+    productos.forEach(persona => {
+      const fila= document.createElement('tr');
+    const documento = document.createElement('td');
+      documento.textContent = persona.documento_persona;
+      fila.appendChild(documento);
+      const tipodoc = document.createElement('td');
+      if (persona.id_tipodoc==1){
+        tipodoc.textContent='CC';
+      }else if (persona.id_tipodoc==2){
+        tipodoc.textContent='TI';
+      }else{
+        tipodoc.textContent='CE';
+      }
+      fila.appendChild(tipodoc);
+      
+      const nombre = document.createElement('td');
+      nombre.textContent = persona.nombre_persona;
+      fila.appendChild(nombre);
+      
+      const direccion = document.createElement('td');
+      direccion.textContent = persona.direccion_persona;
+      fila.appendChild(direccion);
+      
+      const telefono = document.createElement('td');
+      telefono.textContent = persona.telefono_persona;
+      fila.appendChild(telefono);
+
+      tablaBody.appendChild(fila);
+    });
+}
+
+    </script>
+  </body>
+</html>
